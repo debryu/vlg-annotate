@@ -32,6 +32,7 @@ LABEL_FILES = {
     "flower": "concept_files/flower_classes.txt",
     "aircraft": "concept_files/aircraft_classes.txt",
     "dtd": "concept_files/dtd_classes.txt",
+    "celeba": "concept_files/celeba_classes.txt",
 }
 
 BACKBONE_ENCODING_DIMENSION = {
@@ -60,6 +61,33 @@ def get_resnet_imagenet_preprocess():
 
 
 def get_data(dataset_name, preprocess=None):
+    if dataset_name == "celeba_train":
+        data = datasets.CelebA(
+            root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
+            download=False,
+            split="train",
+            target_type=['attr'],#['gender','attr'],
+            transform=preprocess,
+        )
+
+    if dataset_name == "celeba_valid":
+        data = datasets.CelebA(
+            root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
+            download=False,
+            split="valid",
+            target_type=['attr'],#['gender','attr'],
+            transform=preprocess,
+        )
+
+    if dataset_name == "celeba_test":
+        data = datasets.CelebA(
+            root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
+            download=False,
+            split="test",
+            target_type=['attr'],#['gender','attr'],
+            transform=preprocess,
+        )
+    
     if dataset_name == "cifar100_train":
         data = datasets.CIFAR100(
             root=os.path.expanduser(DATASET_FOLDER),
@@ -367,7 +395,9 @@ def plot_annotations(image_pil: Image.Image, annotations: List[Dict]) -> plt.Fig
     """
     fig = plt.figure(figsize=(10, 10))
     plt.imshow(image_pil)
+   
     for annotation in annotations:
-        show_box(annotation["box"], plt.gca(), f"{annotation['label']} : {annotation['logit']:.3f}")
+        if annotation["logit"] > 0.3:
+           show_box(annotation["box"], plt.gca(), f"{annotation['label']} : {annotation['logit']:.3f}")
     plt.axis("off")
     return fig

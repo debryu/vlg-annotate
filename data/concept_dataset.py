@@ -247,7 +247,7 @@ def get_concept_dataloader(
             dataset = val_dataset
 
     loader = DataLoader(dataset, batch_size=batch_size, num_workers=num_workers, shuffle=shuffle)
-    return loader
+    return loader#, dataset
 
 
 def get_filtered_concepts_and_counts(

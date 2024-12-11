@@ -1,0 +1,18 @@
+{
+  "male": [
+    "a bald head",
+    "Goatee",
+    "Moustache",
+    "Receding hairline",
+    "Sideburns",
+    "Wearing necktie"
+  ],
+  "female": [
+    "Makeup",
+    "No Beard",
+    "Rosy cheeks",
+    "Earrings",
+    "Lipstick",
+    "Necklace"
+  ]
+}

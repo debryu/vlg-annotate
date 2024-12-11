@@ -12,13 +12,16 @@ from tqdm import tqdm
 from torchvision import transforms
 
 import data.utils as utils
-import GroundingDINO.groundingdino.datasets.transforms as T
+import groundingdino.datasets.transforms as T
 from data.utils import get_data, plot_annotations
-from GroundingDINO.groundingdino.models import build_model
-from GroundingDINO.groundingdino.util.slconfig import SLConfig
-from GroundingDINO.groundingdino.util.utils import clean_state_dict
+from groundingdino.models import build_model
+from groundingdino.util.slconfig import SLConfig
+from groundingdino.util.utils import clean_state_dict
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+# Terminal Command:
+#python -m scripts.generate_annotations --dataset celeba_train --device cuda --batch_size 32 --text_threshold 0.15 --output_dir annotations --config C:/Users/debryu/Desktop/VS_CODE/HOME/ML/work/GroundingDINO/groundingdino/config/GroundingDINO_SwinB_cfg.py
 
 class Resize(object):
     def __init__(self, size):
@@ -220,7 +223,7 @@ def main():
     parser.add_argument(
         "--grounded_checkpoint",
         type=str,
-        default="GroundingDINO/groundingdino_swinb_cogcoor.pth",
+        default="C:/Users/debryu/Desktop/VS_CODE/HOME/ML/work/GroundingDINO/groundingdino_swinb_cogcoor.pth",
         help="path to checkpoint file",
     )
     parser.add_argument(
@@ -306,14 +309,20 @@ def main():
         prompt = prompt.strip()
         print(f"Prompt for class {class_name}: {prompt}")
 
+        print(dataset)
+        #asd
         # only load images with class_idx
-        dataset_subset = torch.utils.data.Subset(dataset, np.where(np.array(dataset.targets) == class_idx)[0])
+        if True:
+            dataset_subset = torch.utils.data.Subset(dataset, np.where(np.array(dataset.attr[:,20]) == class_idx)[0])
+        else:
+            dataset_subset = torch.utils.data.Subset(dataset, np.where(np.array(dataset.targets) == class_idx)[0])
+        
         dataloader = torch.utils.data.DataLoader(
             dataset_subset,
             batch_size=batch_size,
-            num_workers=num_workers,
+            #num_workers=num_workers,
             shuffle=False,
-            pin_memory=True,
+            #pin_memory=True,
         )
         print(f"Number of images in class {class_name}: {len(dataset_subset)}")
 

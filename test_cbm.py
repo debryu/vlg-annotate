@@ -8,7 +8,8 @@ from loguru import logger
 
 from data import utils as data_utils
 from model.cbm import Backbone, BackboneCLIP, ConceptLayer, FinalLayer, NormalizationLayer, test_model
-from dataset import get_concept_dataloader
+#from dataset import get_concept_dataloader ERROR
+from data.concept_dataset import get_concept_dataloader #, get_filtered_concepts_and_counts, get_final_layer_dataset,
 
 parser = argparse.ArgumentParser(description="Settings for creating CBM")
 parser.add_argument("--load_dir", type=str, default=None, help="where to load trained models from")
