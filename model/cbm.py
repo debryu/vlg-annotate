@@ -351,6 +351,7 @@ def validate_cbl(
     val_loader: DataLoader,
     loss_fn: torch.nn.Module,
     device: str = "cuda",
+    args = None,
 ):
     val_loss = 0.0
     with torch.no_grad():
@@ -365,7 +366,8 @@ def validate_cbl(
             # calculate loss
             batch_loss = loss_fn(concept_logits, concept_one_hot)
             val_loss += batch_loss.item()
-
+            if args.mock:
+                break
         # finalize metrics and update model
         val_loss = val_loss / len(val_loader)
 
@@ -389,6 +391,7 @@ def train_cbl(
     scheduler: str = None,
     backbone_lr: float = 1e-3,
     data_parallel=False,
+    args = None,
 ):
     # setup optimizer
     if optimizer == "sgd":
@@ -453,6 +456,8 @@ def train_cbl(
                     # Exit process if loss is nan
                     logger.error(f"Loss is nan at epoch {epoch} and batch {batch_idx}")
                     sys.exit(1)
+            if args.mock:
+                break
         backbone.eval()
         # finalize metrics and update model
         its.close()
@@ -467,6 +472,7 @@ def train_cbl(
             val_loader,
             loss_fn=loss_fn,
             device=device,
+            args=args,
         )
         if val_loss < best_val_loss:
             logger.info(f"Updating best val loss at epoch: {epoch}")
@@ -489,6 +495,9 @@ def train_cbl(
         # Step the scheduler
         if scheduler is not None:
             scheduler.step(val_loss)
+        
+        if args.mock:
+            break
 
     # return best model based on validation loss
     logger.info(f"Best val loss: {best_val_loss:.6f} at epoch {best_val_loss_epoch}")
@@ -507,6 +516,7 @@ def test_model(
     normalization: NormalizationLayer,
     final_layer: FinalLayer,
     device: str = "cuda",
+    args = None,
 ):
     acc_mean = 0.0
     for features, concept_one_hot, targets in tqdm(loader):
@@ -520,6 +530,8 @@ def test_model(
             concept_logits = cbl(embeddings)
             concept_probs = normalization(concept_logits)
             logits = final_layer(concept_probs)
+            if args.mock:
+                break
 
         # calculate accuracy
         preds = logits.argmax(dim=1)
