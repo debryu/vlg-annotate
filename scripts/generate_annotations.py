@@ -21,7 +21,7 @@ from groundingdino.util.utils import clean_state_dict
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # Terminal Command:
-#python -m scripts.generate_annotations --dataset celeba_train --device cuda --batch_size 32 --text_threshold 0.15 --output_dir annotations --config C:/Users/debryu/Desktop/VS_CODE/HOME/ML/work/GroundingDINO/groundingdino/config/GroundingDINO_SwinB_cfg.py
+#python -m scripts.generate_annotations --dataset celeba_train --device cuda --batch_size 14 --text_threshold 0.15 --output_dir annotations --config C:/Users/debryu/Desktop/VS_CODE/HOME/ML/work/GroundingDINO/groundingdino/config/GroundingDINO_SwinB_cfg.py --num_workers 1 --start_class 1
 
 class Resize(object):
     def __init__(self, size):
@@ -36,7 +36,9 @@ def load_annotation_model(model_config_path, model_checkpoint_path, device="cuda
     args = SLConfig.fromfile(model_config_path)
     args.device = device
     model = build_model(args)
+    print(model_config_path, model_checkpoint_path)
     checkpoint = torch.load(model_checkpoint_path, map_location="cpu")
+    
     load_res = model.load_state_dict(clean_state_dict(checkpoint["model"]), strict=False)
     logger.info(load_res)
     model.eval()
@@ -241,6 +243,7 @@ def main():
     parser.add_argument("--dataset", type=str, default="cifar10_train", help="dataset name")
     parser.add_argument("--device", type=str, default="cuda", help="running on cpu only!, default=False")
     parser.add_argument("--save_image", action="store_true", help="save image")
+    parser.add_argument("--wandb", action="store_true", help="log to wandb")
     args = parser.parse_args()
 
     # cfg
@@ -291,6 +294,7 @@ def main():
 
     # setup prompt
     for class_idx, class_name in enumerate(classes):
+        
         # check if class_idx is in range of start and end
         if args.start_class_idx is not None and class_idx < args.start_class_idx:
             continue
@@ -317,13 +321,23 @@ def main():
         else:
             dataset_subset = torch.utils.data.Subset(dataset, np.where(np.array(dataset.targets) == class_idx)[0])
         
-        dataloader = torch.utils.data.DataLoader(
+        if num_workers > 1:
+            dataloader = torch.utils.data.DataLoader(
             dataset_subset,
             batch_size=batch_size,
-            #num_workers=num_workers,
+            num_workers=num_workers,
             shuffle=False,
-            #pin_memory=True,
+            pin_memory=True,
         )
+        else:
+            logger.info("Disabling num_workers and set it as 1.")
+            dataloader = torch.utils.data.DataLoader(
+                dataset_subset,
+                batch_size=batch_size,
+                #num_workers=num_workers,
+                shuffle=False,
+                #pin_memory=True,
+            )
         print(f"Number of images in class {class_name}: {len(dataset_subset)}")
 
         # run model
@@ -338,6 +352,7 @@ def main():
                 # get global image index
                 processed_images = batch_idx * batch_size + image_idx
                 global_idx = dataset_subset.indices[processed_images]
+                #print("Global id:",global_idx)
                 image_pil = pil_data[global_idx][0]
 
                 # process annotations

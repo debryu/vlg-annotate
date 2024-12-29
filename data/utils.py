@@ -70,7 +70,7 @@ def get_data(dataset_name, preprocess=None):
             transform=preprocess,
         )
 
-    if dataset_name == "celeba_valid":
+    elif dataset_name == "celeba_valid" or dataset_name == "celeba_val":
         data = datasets.CelebA(
             root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
             download=False,
@@ -79,7 +79,7 @@ def get_data(dataset_name, preprocess=None):
             transform=preprocess,
         )
 
-    if dataset_name == "celeba_test":
+    elif dataset_name == "celeba_test":
         data = datasets.CelebA(
             root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
             download=False,
@@ -88,7 +88,7 @@ def get_data(dataset_name, preprocess=None):
             transform=preprocess,
         )
     
-    if dataset_name == "cifar100_train":
+    elif dataset_name == "cifar100_train":
         data = datasets.CIFAR100(
             root=os.path.expanduser(DATASET_FOLDER),
             download=True,
@@ -231,6 +231,9 @@ def get_data(dataset_name, preprocess=None):
                 datasets.ImageFolder(DATASET_ROOTS["broden"], preprocess),
             ]
         )
+
+    else:
+        raise ValueError(f"Dataset {dataset_name} not found")    
     return data
 
 
