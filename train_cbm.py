@@ -9,9 +9,10 @@ import numpy as np
 import torch
 import torch.nn as nn
 from loguru import logger
-from torch.utils.tensorboard import SummaryWriter
+#from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
+#python train_cbm.py --dataset cifar10 --device cpu --num_workers 1 --cbl_batch_size 2 --concept_set concept_files/cifar10_filtered.txt --mock --annotation_dir annotations
 import model.utils as utils
 from data import utils as data_utils
 from data.concept_dataset import (
@@ -119,7 +120,7 @@ def train_cbm_and_save(args):
             f.write("\n" + concept)
 
     # setup tensorboard writer
-    tb_writer = SummaryWriter(save_dir)
+    #tb_writer = SummaryWriter(save_dir)
 
     # setup all dataloaders
     augmented_train_cbl_loader = get_concept_dataloader(
@@ -215,13 +216,14 @@ def train_cbm_and_save(args):
             lr=args.cbl_lr,
             weight_decay=args.cbl_weight_decay,
             concepts=concepts,
-            tb_writer=tb_writer,
+            tb_writer=None,
             device=args.device,
             finetune=args.cbl_finetune,
             optimizer=args.cbl_optimizer,
             scheduler=args.cbl_scheduler,
             backbone_lr=args.cbl_lr * args.cbl_bb_lr_rate,
             data_parallel=args.data_parallel,
+            args = args
         )
     else:
         logger.info("Loading CBL from {}".format(args.load_dir))
@@ -289,7 +291,7 @@ def train_cbm_and_save(args):
     #### Test the model on test set ####
     ##############################################
     test_accuracy = test_model(
-        test_cbl_loader, backbone, cbl, normalization_layer, final_layer, args.device
+        test_cbl_loader, backbone, cbl, normalization_layer, final_layer, args.device, args=args
     )
     logger.info(f"Test accuracy: {test_accuracy}")
 
@@ -320,9 +322,9 @@ def train_cbm_and_save(args):
         }
         json.dump(out_dict, f, indent=2)
 
-    utils.write_parameters_tensorboard(
-        tb_writer, vars(args), test_accuracy * 100.0, (nnz / total) * 100.0
-    )
+    #utils.write_parameters_tensorboard(
+    #    tb_writer, vars(args), test_accuracy * 100.0, (nnz / total) * 100.0
+    #)
 
     ##############################################
     ## Visualize top images for concepts ##
@@ -363,6 +365,11 @@ def main():
 
     parser = argparse.ArgumentParser(description="Settings for creating CBM")
     parser.add_argument("--dataset", type=str, default="cifar10")
+    parser.add_argument(
+        "--mock",
+        action="store_true",
+        help="Mock training for debugging purposes",
+    )
     parser.add_argument(
         "--concept_set", type=str, default=None, help="path to concept set name"
     )

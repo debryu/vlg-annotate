@@ -322,6 +322,7 @@ def get_concepts(concept_file: str, filter_file:Optional[str]=None) -> List[str]
         to_filter_concepts = [format_concept(concept) for concept in to_filter_concepts]
         concepts = [concept for concept in concepts if concept not in to_filter_concepts]
 
+    logger.debug(concepts)
     return concepts
 
 
