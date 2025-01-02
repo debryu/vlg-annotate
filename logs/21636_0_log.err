@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\_submit.py", line 11, in <module>
+    submitit_main()
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 76, in submitit_main
+    process_job(args.folder)
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 52, in process_job
+    delayed = utils.DelayedSubmission.load(paths.submitted_pickle)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 153, in load
+    obj = pickle_load(filepath)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 232, in pickle_load
+    return pickle.load(ifile)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\train_cbm.py", line 9, in <module>
+    import torch
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\__init__.py", line 367, in <module>
+    from torch._C import *  # noqa: F403
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 463, in _lock_unlock_module
+KeyboardInterrupt

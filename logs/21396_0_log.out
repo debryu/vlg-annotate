@@ -1,0 +1,2 @@
+submitit INFO (2025-01-02 19:49:34,467) - Starting with JobEnvironment(job_id=21396, hostname=DESKTOP-VDBR0MJ, local_rank=0(1), node=0(1), global_rank=0(1))
+submitit INFO (2025-01-02 19:49:34,467) - Loading pickle: C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\logs\21396_submitted.pkl

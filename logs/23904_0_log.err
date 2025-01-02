@@ -1,0 +1,42 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\_submit.py", line 11, in <module>
+    submitit_main()
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 76, in submitit_main
+    process_job(args.folder)
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 52, in process_job
+    delayed = utils.DelayedSubmission.load(paths.submitted_pickle)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 153, in load
+    obj = pickle_load(filepath)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 232, in pickle_load
+    return pickle.load(ifile)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\train_cbm.py", line 16, in <module>
+    import model.utils as utils
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\model\utils.py", line 5, in <module>
+    import clip
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\clip\__init__.py", line 1, in <module>
+    from .clip import *
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\clip\clip.py", line 10, in <module>
+    from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\__init__.py", line 10, in <module>
+    from torchvision import _meta_registrations, datasets, io, models, ops, transforms, utils  # usort:skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\datasets\__init__.py", line 1, in <module>
+    from ._optical_flow import FlyingChairs, FlyingThings3D, HD1K, KittiFlow, Sintel
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\datasets\_optical_flow.py", line 12, in <module>
+    from ..io.image import decode_png, read_file
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\io\__init__.py", line 5, in <module>
+    from ..utils import _log_api_usage_once
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\utils.py", line 11, in <module>
+    from PIL import Image, ImageColor, ImageDraw, ImageFont
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1087, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1187, in get_data
+KeyboardInterrupt

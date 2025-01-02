@@ -1,0 +1,40 @@
+submitit ERROR (2025-01-02 19:50:40,279) - Submitted job triggered an exception
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\_submit.py", line 11, in <module>
+    submitit_main()
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 76, in submitit_main
+    process_job(args.folder)
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 69, in process_job
+    raise error
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 52, in process_job
+    delayed = utils.DelayedSubmission.load(paths.submitted_pickle)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 153, in load
+    obj = pickle_load(filepath)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 232, in pickle_load
+    return pickle.load(ifile)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\train_cbm.py", line 16, in <module>
+    import model.utils as utils
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\model\utils.py", line 6, in <module>
+    from data import utils as data_utils
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\data\utils.py", line 5, in <module>
+    from matplotlib import pyplot as plt
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\matplotlib\pyplot.py", line 66, in <module>
+    from matplotlib.figure import Figure, FigureBase, figaspect
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\matplotlib\figure.py", line 40, in <module>
+    from matplotlib import _blocking_input, backend_bases, _docstring, projections
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\matplotlib\projections\__init__.py", line 55, in <module>
+    from .. import axes, _docstring
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\matplotlib\axes\__init__.py", line 1, in <module>
+    from . import _base
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1087, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1187, in get_data
+MemoryError

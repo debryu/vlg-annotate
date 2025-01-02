@@ -1,0 +1,35 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\_submit.py", line 11, in <module>
+    submitit_main()
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 76, in submitit_main
+    process_job(args.folder)
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 52, in process_job
+    delayed = utils.DelayedSubmission.load(paths.submitted_pickle)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 153, in load
+    obj = pickle_load(filepath)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 232, in pickle_load
+    return pickle.load(ifile)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\train_cbm.py", line 9, in <module>
+    import torch
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\__init__.py", line 2475, in <module>
+    from torch import (
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\export\__init__.py", line 28, in <module>
+    from torch.fx.passes.infra.pass_base import PassResult
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\fx\passes\__init__.py", line 3, in <module>
+    from . import net_min_base
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\fx\passes\net_min_base.py", line 13, in <module>
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\fx\passes\split_utils.py", line 11, in <module>
+    from .tools_common import NodeList
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1322, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 1262, in _find_spec
+  File "<frozen importlib._bootstrap_external>", line 1528, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 1502, in _get_spec
+  File "<frozen importlib._bootstrap_external>", line 1629, in find_spec
+  File "<frozen importlib._bootstrap_external>", line 119, in _path_join
+KeyboardInterrupt

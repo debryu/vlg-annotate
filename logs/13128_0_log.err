@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\_submit.py", line 11, in <module>
+    submitit_main()
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 76, in submitit_main
+    process_job(args.folder)
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 52, in process_job
+    delayed = utils.DelayedSubmission.load(paths.submitted_pickle)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 153, in load
+    obj = pickle_load(filepath)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 232, in pickle_load
+    return pickle.load(ifile)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\train_cbm.py", line 9, in <module>
+    import torch
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\__init__.py", line 2016, in <module>
+    from torch import _VF as _VF, functional as functional  # usort: skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\functional.py", line 1646, in <module>
+    @overload
+     ^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\_jit_internal.py", line 1029, in _overload
+    fn_overload_list = _overloaded_fns.get(qual_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

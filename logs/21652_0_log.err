@@ -1,0 +1,68 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\_submit.py", line 11, in <module>
+    submitit_main()
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 76, in submitit_main
+    process_job(args.folder)
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\submission.py", line 52, in process_job
+    delayed = utils.DelayedSubmission.load(paths.submitted_pickle)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 153, in load
+    obj = pickle_load(filepath)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\submitit\core\utils.py", line 232, in pickle_load
+    return pickle.load(ifile)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\train_cbm.py", line 16, in <module>
+    import model.utils as utils
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\model\utils.py", line 5, in <module>
+    import clip
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\clip\__init__.py", line 1, in <module>
+    from .clip import *
+  File "C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\clip\clip.py", line 10, in <module>
+    from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\__init__.py", line 10, in <module>
+    from torchvision import _meta_registrations, datasets, io, models, ops, transforms, utils  # usort:skip
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\models\__init__.py", line 2, in <module>
+    from .convnext import *
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\models\convnext.py", line 8, in <module>
+    from ..ops.misc import Conv2dNormActivation, Permute
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\ops\__init__.py", line 23, in <module>
+    from .poolers import MultiScaleRoIAlign
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\ops\poolers.py", line 10, in <module>
+    from .roi_align import roi_align
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torchvision\ops\roi_align.py", line 7, in <module>
+    from torch._dynamo.utils import is_compile_supported
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\_dynamo\__init__.py", line 3, in <module>
+    from . import convert_frame, eval_frame, resume_execution
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\_dynamo\convert_frame.py", line 31, in <module>
+    from torch._dynamo.utils import CompileTimeInstructionCounter
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\_dynamo\utils.py", line 62, in <module>
+    import torch.fx.experimental.symbolic_shapes
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\fx\experimental\symbolic_shapes.py", line 65, in <module>
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\torch\utils\_sympy\functions.py", line 7, in <module>
+    import sympy
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\sympy\__init__.py", line 257, in <module>
+    from .plotting import plot, textplot, plot_backends, plot_implicit, plot_parametric
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\sympy\plotting\__init__.py", line 1, in <module>
+    from .plot import plot_backends
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\sympy\plotting\plot.py", line 32, in <module>
+    from sympy.plotting.backends.base_backend import Plot
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\sympy\plotting\backends\base_backend.py", line 1, in <module>
+    from sympy.plotting.series import BaseSeries, GenericDataSeries
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\sympy\plotting\series.py", line 24, in <module>
+    from .intervalmath import interval
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\sympy\plotting\intervalmath\__init__.py", line 1, in <module>
+    from .interval_arithmetic import interval
+  File "C:\Users\debryu\anaconda3\envs\vlg-cbm\Lib\site-packages\sympy\plotting\intervalmath\interval_arithmetic.py", line 39, in <module>
+    from .interval_membership import intervalMembership
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 991, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1081, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1204, in path_stats
+  File "<frozen importlib._bootstrap_external>", line 147, in _path_stat
+KeyboardInterrupt
