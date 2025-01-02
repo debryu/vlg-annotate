@@ -246,7 +246,11 @@ def get_concept_dataloader(
             logger.info(f"Val dataset size: {len(val_dataset)}")
             dataset = val_dataset
 
-    loader = DataLoader(dataset, batch_size=batch_size, num_workers=num_workers, shuffle=shuffle)
+    if num_workers > 1:
+        loader = DataLoader(dataset, batch_size=batch_size, num_workers=num_workers, shuffle=shuffle)
+    else:
+        print("Using single worker")
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle)
     return loader#, dataset
 
 
@@ -311,7 +315,11 @@ def get_final_layer_dataset(
             train_concept_features = []
             train_concept_labels = []
             logger.info("Creating final layer training dataset")
-            for features, _, labels in tqdm(train_loader):
+            for features, _, labels in tqdm(train_loader):  #Originally was for features, _, labels in tqdm(train_loader):
+                print(features.shape)
+                #print(c.shape)
+                print(labels.shape)
+                #asd
                 features = features.to(device)
                 concept_logits = cbl(backbone(features))
                 train_concept_features.append(concept_logits.detach().cpu())

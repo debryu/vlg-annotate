@@ -12,7 +12,7 @@ from loguru import logger
 #from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
-#python train_cbm.py --dataset cifar10 --device cpu --num_workers 1 --cbl_batch_size 2 --concept_set concept_files/cifar10_filtered.txt --mock --annotation_dir annotations
+#  python train_cbm.py --config configs/celeba.json --annotation_dir annotations
 import model.utils as utils
 from data import utils as data_utils
 from data.concept_dataset import (
@@ -138,6 +138,11 @@ def train_cbm_and_save(args):
         use_allones=args.allones_concept,
         seed=args.seed,
     )
+    for batch in augmented_train_cbl_loader:
+        print(batch)
+        break
+    #asd
+    print("augmented_train_cbl_loader")
     train_cbl_loader = get_concept_dataloader(
         args.dataset,
         "train",
@@ -153,6 +158,10 @@ def train_cbm_and_save(args):
         use_allones=args.allones_concept,
         seed=args.seed,
     )  # no shuffle to match labels
+    for batch in train_cbl_loader:
+        print(batch)
+        break
+    #asd
     val_cbl_loader = get_concept_dataloader(
         args.dataset,
         "val",
@@ -253,6 +262,7 @@ def train_cbm_and_save(args):
         val_cbl_loader,
         save_dir,
         load_dir=args.load_dir,
+        #load_dir = "C:\\Users\\debryu\\Desktop\\VS_CODE\\HOME\\ML\\work\\VLG-CBM\\saved_models\\celeba\\celeba_cbm_2024_12_29_14_41_15", #load_dir=args.load_dir,
         batch_size=args.saga_batch_size,
         device=args.device,
     )

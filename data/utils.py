@@ -59,19 +59,36 @@ def get_resnet_imagenet_preprocess():
     )
     return preprocess
 
+class CelebaCustom(datasets.CelebA):
+    def __init__(
+        self,
+        root,
+        split: str = "train",
+        target_type = "attr",
+        transform = None,
+        target_transform = None,
+        download: bool = False,
+    ) -> None:
+        super().__init__(root=root,split=split,target_type=target_type,transform=transform,target_transform=target_transform,download=download)
+    
+    def __getitem__(self, index: int):
+        x, y = super().__getitem__(index)
+        y = y[20]
+        return x, y
 
 def get_data(dataset_name, preprocess=None):
     if dataset_name == "celeba_train":
-        data = datasets.CelebA(
+        data = CelebaCustom(
             root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
             download=False,
             split="train",
             target_type=['attr'],#['gender','attr'],
             transform=preprocess,
         )
+        
 
     elif dataset_name == "celeba_valid" or dataset_name == "celeba_val":
-        data = datasets.CelebA(
+        data = CelebaCustom(
             root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
             download=False,
             split="valid",
@@ -80,7 +97,7 @@ def get_data(dataset_name, preprocess=None):
         )
 
     elif dataset_name == "celeba_test":
-        data = datasets.CelebA(
+        data = CelebaCustom(
             root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
             download=False,
             split="test",
@@ -95,6 +112,8 @@ def get_data(dataset_name, preprocess=None):
             train=True,
             transform=preprocess,
         )
+        #print(data[0])
+        
 
     elif dataset_name == "cifar100_val":
         data = datasets.CIFAR100(

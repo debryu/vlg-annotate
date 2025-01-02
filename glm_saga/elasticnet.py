@@ -294,6 +294,7 @@ def train_saga(linear, loader, lr, nepochs, lam, alpha, group=True, verbose=None
         for t in tqdm(range(nepochs)): 
             total_loss = 0
             for batch in loader: 
+                print(batch)
                 if len(batch) == 3: 
                     X,y,idx = batch
                     w = None
@@ -313,6 +314,8 @@ def train_saga(linear, loader, lr, nepochs, lam, alpha, group=True, verbose=None
                 # for efficient storage of gradient information 
                 if family == 'multinomial': 
                     if w is None: 
+                        print(out)
+                        print(y)
                         loss = F.cross_entropy(out,y.to(weight.device), reduction='mean')
                     else: 
                         loss = F.cross_entropy(out,y.to(weight.device), reduction='none')
