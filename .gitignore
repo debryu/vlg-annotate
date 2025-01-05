@@ -3,3 +3,9 @@ annotations
 saved_models
 annotations.zip
 annotations.rar
+__pycache__
+model/__pycache__
+data/__pycache__
+interpretability/__pycache__
+clip/__pycache__
+glm_saga/__pycache__

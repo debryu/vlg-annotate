@@ -17,7 +17,7 @@
     "cbl_confidence_threshold": 0.15,
     "cbl_hidden_layers": 1,
     "cbl_batch_size": 512,
-    "cbl_epochs": 1,
+    "cbl_epochs": 10,
     "cbl_weight_decay": 1e-05,
     "cbl_lr": 0.0005,
     "cbl_pos_weight": 0.2,

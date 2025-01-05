@@ -15,6 +15,11 @@ from PIL import Image
 # get from the environment variable
 DATASET_FOLDER = os.environ.get("DATASET_FOLDER", "datasets")
 
+DATASETS_FOLDER_PATHS = {
+    "celeba": "/home/nicola.debole/datasets/celeba_manual_download/"
+
+}
+
 DATASET_ROOTS = {
     "imagenet_train": f"{DATASET_FOLDER}/imagenet/ILSVRC/Data/CLS-LOC/train",
     "imagenet_val": f"{DATASET_FOLDER}/imagenet/ILSVRC/Data/CLS-LOC/ImageNet_val",
@@ -77,9 +82,10 @@ class CelebaCustom(datasets.CelebA):
         return x, y
 
 def get_data(dataset_name, preprocess=None):
+    dataset = dataset_name.split("_")[0]
     if dataset_name == "celeba_train":
         data = CelebaCustom(
-            root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
+            root = DATASETS_FOLDER_PATHS[dataset],
             download=False,
             split="train",
             target_type=['attr'],#['gender','attr'],
@@ -89,7 +95,7 @@ def get_data(dataset_name, preprocess=None):
 
     elif dataset_name == "celeba_valid" or dataset_name == "celeba_val":
         data = CelebaCustom(
-            root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
+            root= DATASETS_FOLDER_PATHS[dataset],
             download=False,
             split="valid",
             target_type=['attr'],#['gender','attr'],
@@ -98,7 +104,7 @@ def get_data(dataset_name, preprocess=None):
 
     elif dataset_name == "celeba_test":
         data = CelebaCustom(
-            root=os.path.expanduser(DATASET_FOLDER) + "/celeba_manual_download/",
+            root=DATASETS_FOLDER_PATHS[dataset],
             download=False,
             split="test",
             target_type=['attr'],#['gender','attr'],

@@ -316,9 +316,9 @@ def get_final_layer_dataset(
             train_concept_labels = []
             logger.info("Creating final layer training dataset")
             for features, _, labels in tqdm(train_loader):  #Originally was for features, _, labels in tqdm(train_loader):
-                print(features.shape)
+                #print(features.shape)
                 #print(c.shape)
-                print(labels.shape)
+                #print(labels.shape)
                 #asd
                 features = features.to(device)
                 concept_logits = cbl(backbone(features))

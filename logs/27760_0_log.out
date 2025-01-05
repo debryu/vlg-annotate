@@ -1,3 +1,0 @@
-submitit INFO (2025-01-02 19:50:33,712) - Starting with JobEnvironment(job_id=27760, hostname=DESKTOP-VDBR0MJ, local_rank=0(1), node=0(1), global_rank=0(1))
-submitit INFO (2025-01-02 19:50:33,713) - Loading pickle: C:\Users\debryu\Desktop\VS_CODE\HOME\ML\work\VLG-CBM\logs\27760_submitted.pkl
-submitit ERROR (2025-01-02 19:50:37,104) - Submitted job triggered an exception

@@ -1,9 +1,0 @@
-object address  : 000001EE5FC1D9C0
-object refcount : 3
-object type     : 00007FFF3F086FF0
-object type name: KeyboardInterrupt
-object repr     : 
-lost sys.stderr
-Exception ignored in sys.unraisablehookException ignored in atexit callback: <object repr() failed>
-RuntimeError: cannot release un-acquired lockException ignored in sys.unraisablehook: <built-in function unraisablehook>
-KeyboardInterrupt: 

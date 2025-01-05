@@ -4,7 +4,7 @@ import json
 import os
 import random
 import sys
-
+import wandb
 import numpy as np
 import torch
 import torch.nn as nn
@@ -47,6 +47,12 @@ class LoggerWriter:
 
 
 def train_cbm_and_save(args):
+    if args.wandb:
+        wandb.init(project = "vlg-cbm", name = f"threshold={args.cbl_confidence_threshold}", config = args)
+    '''
+    TODO:
+        add wandb logging
+    '''
     # Setup log directory and logger
     save_dir = "{}/{}_cbm_{}".format(
         args.save_dir,
@@ -138,11 +144,11 @@ def train_cbm_and_save(args):
         use_allones=args.allones_concept,
         seed=args.seed,
     )
-    for batch in augmented_train_cbl_loader:
-        print(batch)
-        break
+    #for batch in augmented_train_cbl_loader:
+    #    print(batch)
+    #    break
     #asd
-    print("augmented_train_cbl_loader")
+    #print("augmented_train_cbl_loader")
     train_cbl_loader = get_concept_dataloader(
         args.dataset,
         "train",
@@ -158,9 +164,9 @@ def train_cbm_and_save(args):
         use_allones=args.allones_concept,
         seed=args.seed,
     )  # no shuffle to match labels
-    for batch in train_cbl_loader:
-        print(batch)
-        break
+    #for batch in train_cbl_loader:
+    #    print(batch)
+    #    break
     #asd
     val_cbl_loader = get_concept_dataloader(
         args.dataset,
@@ -375,6 +381,11 @@ def main():
 
     parser = argparse.ArgumentParser(description="Settings for creating CBM")
     parser.add_argument("--dataset", type=str, default="cifar10")
+    parser.add_argument(
+        "--wandb",
+        action="store_true",
+        help="activate wandb",
+    )
     parser.add_argument(
         "--mock",
         action="store_true",
